@@ -6,7 +6,7 @@ export const Compartment = styled.div`
   background-color: blue;
 `;
 
-export class LeftCompartment extends React.PureComponent {
+export class LeftComponent extends React.PureComponent {
   render() {
       return (<Compartment>This is the toolbar</Compartment>);
     }
