@@ -11,7 +11,7 @@ const config = {
   },
 
   output: {
-    filename: './templates/[name].js',
+    filename: './static/js/[name].js',
   },
 
   module: {
