@@ -1,9 +1,14 @@
 import React from 'react';
+import Toolbar from './toolbar.jsx'
 
 
-export class Index extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+export class Index extends React.PureComponent {
   render() {
-    return (<h2>Greetings, from Real Python!</h2>);
+    return (<div>
+            <Toolbar/>
+            <h1>hi!</h1>
+            <h2>Greetings, from Real Python!</h2>
+            </div>);
   }
 }
 
