@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import Index from './index.jsx';
+import reducer from '../reducers/reducers';
 
-// const store = createStore(reducer);
-// window.store = store;
+const store = createStore(reducer);
+window.store = store;
 
 ReactDOM.render(
-  <Index />,
+  <Provider store={store}>
+    <Index />
+  </Provider>,
   document.getElementById('content')
 );

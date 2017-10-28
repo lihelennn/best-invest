@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   entry: {
-    app: './src/app.jsx',
+    app: './src/components/app.jsx',
   },
 
   output: {
