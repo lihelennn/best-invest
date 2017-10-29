@@ -2,6 +2,7 @@ import { fromJS } from 'immutable';
 import moment from 'moment';
 
 import {
+  SELL_SHARE,
   BUY_SHARE,
   ADD_SYMBOL,
   UPDATE_SYMBOL,
@@ -26,6 +27,9 @@ function mainReducer(state = initialState, action) {
     case BUY_SHARE:
       var numShares = state.getIn(["symbol", action.symbol])
       return state.setIn(["symbol", action.symbol], numShares + 1);
+    case SELL_SHARE:
+      var numShares = state.getIn(["symbol", action.symbol])
+      return state.setIn(["symbol", action.symbol], numShares - 1);
     case UPDATE_START_DATE:
       var formatted = action.start_date.format().slice(0,10);
       state = state.set('start_moment', action.start_date);
