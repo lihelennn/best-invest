@@ -15,7 +15,7 @@ import {getInfo, getOpen, getClose} from '../../static/api';
 
 
 
-export const wholeContainer = styled.div`
+export const WholeContainer = styled.div`
   margin: 0; padding: 0; height: 100%;
   top:0; left:0;
   width: 100%;
@@ -51,31 +51,39 @@ export class Index extends React.PureComponent {
     const sym = "VOO";
     const start_moment = this.props.start_moment.format();
     const end_moment = this.props.end_moment.format();
-    let start_date = "2017-10-01";
-    let end_date = "2017-10-03";
-    const dates = this.getInBetweenDatesArray(start_date, end_date);
+    // let start_date = "2017-10-01";
+    // let end_date = "2017-10-03";
+    // const dates = this.getInBetweenDatesArray(start_date, end_date);
     let api_data = getInfo(sym);
-    // start_date = start_moment.substring(0,start_moment.indexOf('T'));
-    // end_date = end_moment.substring(0,start_moment.indexOf('T'));
+    let start_date = start_moment.substring(0,start_moment.indexOf('T'));
+    let end_date = end_moment.substring(0,start_moment.indexOf('T'));
+    const dates = this.getInBetweenDatesArray(start_date, end_date);
+
     // const dates = start_date !== undefined && end_date !== undefined ? [start_date, end_date] : ["2017-08-16", "2017-09-22", "2017-10-16"];
-    console.log(dates);
     // let symbol_inputs = this.props.symbol._tail != undefined ? this.props.symbol._tail.array : this.props.symbol;
 
     var symbol = this.props.symbol
-    const data1 = dates.map((date) => getOpen(date, sym));
+    // var api_data = getInfo(symbol)
+    const data1 = dates.map((date) => getOpen(date, sym, api_data));
     let data2 = [];
     let i = 0;
     let ii = 0;
     let current_stock = 0;
+    let current_stock_list = [];
 
     for(i=0; i<dates.length; i++){
       current_stock = 0;
       symbol.map(
       (value, key) => {
-        current_stock += value * parseInt(getOpen(dates[i], key));
+        api_data = getInfo(key);
+        if(api_data !== undefined){
+          current_stock += value * parseInt(getOpen(dates[i], key, api_data));
+        }else{
+          current_stock = current_stock_list[current_stock_list.length-1];
         }
-      )
+      })
       data2.push(current_stock);
+      current_stock_list.push(current_stock);
     }
 
     var listItems = []
