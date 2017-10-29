@@ -12,7 +12,7 @@ export class IndividualStock extends React.PureComponent {
     return(
       <div>
         <StockContainer>
-          {this.props.symbol}
+          {this.props.symbol} Shares: {this.props.shares}
         </ StockContainer>
         <button onClick={() => this.props.buyShare(this.props.symbol)}> + </button>
         <button onClick={() => this.props.sellShare(this.props.symbol)}> - </button>
@@ -21,10 +21,15 @@ export class IndividualStock extends React.PureComponent {
 }
 
 IndividualStock.propTypes = {
+  shares: PropTypes.number,
   symbol: PropTypes.string,
   buyShare: PropTypes.func,
   sellShare:  PropTypes.func,
 };  
+
+const mapStateToProps = (state, ownProps) => ({
+  shares: state.getIn(['symbol', ownProps["symbol"]]),
+});
 
 export function mapDispatchToProps(dispatch) {
   return {
@@ -34,4 +39,4 @@ export function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(IndividualStock);
+export default connect(mapStateToProps, mapDispatchToProps)(IndividualStock);

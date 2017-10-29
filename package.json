@@ -1,13 +1,13 @@
 {
   "name": "site",
   "version": "1.0.0",
-  "description": "Boying's personal site",
+  "description": "Best Invest",
   "main": "index.js",
   "homepage": ".",
   "scripts": {
     "start": "python wsgi.py",
     "prestart": "webpack",
-    "build": "webpack"
+    "build": "webpack -w"
   },
   "author": "Boying Tang",
   "license": "ISC",

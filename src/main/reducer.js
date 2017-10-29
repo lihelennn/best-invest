@@ -11,7 +11,7 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-  symbol: {"GOOGL":1},
+  symbol: {},
   start_moment: moment(),
   start_date: "",
   end_moment: moment(),

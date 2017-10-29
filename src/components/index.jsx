@@ -99,7 +99,7 @@ export class Index extends React.PureComponent {
     var listItems = []
     symbol.map(
       (value, key) => {
-        listItems.push(<IndividualStock key={key} symbol={key}/>)
+        listItems.push(<IndividualStock key={key} symbol={key} shares={value}/>)
       }
     )
     return (
@@ -109,7 +109,6 @@ export class Index extends React.PureComponent {
         <DatePicker selected={this.props.start_moment} onChange={(e) => this.props.updateStartDate(e)}/>
         End date:
         <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
-        <h1>this is a test</h1>
         <LeftCompartment>
           <h2>Index Portfolio Stocks</h2>
           <h4>{new_data1_delta}%</h4>
