@@ -74,17 +74,13 @@ export class Index extends React.PureComponent {
       (value, key) => {
         api_data = getInfo(key);
         if(api_data !== undefined){
-          current_stock += value * parseInt(getOpen(dates[i], key, api_data));
-        }else{
-          current_stock = current_stock_list[current_stock_list.length-1];
+          current_stock += value * parseFloat(getOpen(dates[i], key, api_data));
+          console.log(getOpen(dates[i], key, api_data));
         }
-      })
+      });
       data2.push(current_stock);
-      current_stock_list.push(current_stock);
-
 
       total_individual_stocks += current_stock;
-
     }
 
     const total_shares = data2[0]/data1[0];
