@@ -5,9 +5,9 @@
   "main": "index.js",
   "homepage": ".",
   "scripts": {
-    "start": "node app.js",
+    "start": "python wsgi.py",
     "nodemon": "nodemon --inspect -e js,JSON,css, app.js",
-    "build": "webpack -w"
+    "build": "webpack"
   },
   "author": "Boying Tang",
   "license": "ISC",
