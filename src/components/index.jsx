@@ -25,9 +25,32 @@ export const RightCompartment = styled.div`
 
 
 export class Index extends React.PureComponent {
+  getInBetweenDatesArray(start, end) {
+    let arr = []
+    var day = 1000*60*60*24;
+    const date1 = new Date(start);
+    const date2 = new Date(end);
+
+    var diff = (date2.getTime()- date1.getTime())/day;
+    for(var i=0;i<=diff; i++) {
+      var xx = date1.getTime()+day*i;
+      var yy = new Date(xx);
+      arr.push(yy.getFullYear()+"-"+(yy.getMonth()+1)+"-"+yy.getDate());
+    }
+    return arr;
+  }
+
   render() {
     const sym = "VOO";
-    const dates = ["2017-08-16", "2017-09-22", "2017-10-16"];
+    const start_moment = this.props.start_moment.format();
+    const end_moment = this.props.end_moment.format();
+    let start_date = "2017-10-01";
+    let end_date = "2017-10-22";
+    const dates = this.getInBetweenDatesArray(start_date, end_date);
+    // start_date = start_moment.substring(0,start_moment.indexOf('T'));
+    // end_date = end_moment.substring(0,start_moment.indexOf('T'));
+    // const dates = start_date !== undefined && end_date !== undefined ? [start_date, end_date] : ["2017-08-16", "2017-09-22", "2017-10-16"];
+    console.log(dates);
     let symbol_inputs = this.props.symbol._tail != undefined ? this.props.symbol._tail.array : this.props.symbol;
     const data1 = dates.map((date) => getOpen(date, sym));
     let data2 = [];
@@ -48,8 +71,6 @@ export class Index extends React.PureComponent {
             <DatePicker selected={this.props.start_moment} onChange={(e) => this.props.updateStartDate(e)}/>
             <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
             <h1>this is a test</h1>
-            {this.props.symbol}
-            {data2}
             <LineGraph data1={data2} labels={dates}/>
 
             <LineGraph data1={data1} labels={dates}/>
