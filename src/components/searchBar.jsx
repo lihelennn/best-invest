@@ -27,6 +27,8 @@ export class SearchBar extends React.PureComponent {
 
 SearchBar.propTypes = {
   updateSymbol: PropTypes.func,
+  updateStartDate: PropTypes.func,
+  updateEndDate: PropTypes.func,
   type: PropTypes.string,
 };
 

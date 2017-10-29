@@ -1,4 +1,4 @@
-function getInfo(date, symbol)
+export function getInfo(date, symbol)
 {
     var xmlHttp = new XMLHttpRequest();
     var theUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+symbol+"&apikey=N6SXUAOK8ABQZ1H2";
@@ -9,11 +9,11 @@ function getInfo(date, symbol)
     return json["Time Series (Daily)"][date]
 }
 
-function getOpen(date, symbol){
+export function getOpen(date, symbol){
     return getInfo(date, symbol)["1. open"]
 }
 
-function getClose(date, symbol){
+export function getClose(date, symbol){
     return getInfo(date, symbol)["4. close"]
 }
 

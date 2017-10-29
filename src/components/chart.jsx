@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {Line as LineChart} from 'react-chartjs';
 
-function chartData(labels_param, data1_param, data2_param) {
+function chartData(labels_param, data1_param) {
   return {
     labels: labels_param,
     datasets: [
@@ -14,16 +14,6 @@ function chartData(labels_param, data1_param, data2_param) {
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
         data: data1_param,
-      },
-      {
-        label: 'My Second dataset',
-        fillColor: 'rgba(151,187,205,0.2)',
-        strokeColor: 'rgba(151,187,205,1)',
-        pointColor: 'rgba(151,187,205,1)',
-        pointStrokeColor: '#fff',
-        pointHighlightFill: '#fff',
-        pointHighlightStroke: 'rgba(151,187,205,1)',
-        data: data2_param,
       },
     ]
   }
@@ -60,7 +50,7 @@ class LineGraph extends React.Component {
     super(props)
     console.log(this.props);
     this.state = {
-      data: chartData(this.props.labels, this.props.data1, this.props.data2)
+      data: chartData(this.props.labels, this.props.data1)
     }
   }
 
