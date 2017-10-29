@@ -8,19 +8,29 @@ import { connect } from 'react-redux';
 import Toolbar from './toolbar.jsx'
 import LineGraph from './chart.jsx'
 import SearchBar from './searchBar.jsx'
+
+import {Container, Button} from 'bloomer';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import { updateStartDate, updateEndDate } from '../main/actions'
 import {getInfo, getOpen, getClose} from '../../static/api';
 
+
+
 export const wholeContainer = styled.div`
   margin: 0; padding: 0; height: 100%;
-  background-color: #2c3e50;
+  top:0; left:0;
+  width: 100%;
+  text-align: center;
 `;
 export const LeftCompartment = styled.div`
-  position: absolute; left: 0; height: 100%; width: 50%;
+  position: absolute; left: 0; height:70%; width: 50%;
+  border-right: 1px solid white;
+  text-align: center;
 `;
 export const RightCompartment = styled.div`
-  position: absolute; right: 0; height: 100%; width: 50%;
+  position: absolute; right: 0; height:70%; width: 50%;
+  text-align: center;
 `;
 
 
@@ -68,17 +78,17 @@ export class Index extends React.PureComponent {
     }
     return (
       <wholeContainer>
-        <LeftCompartment>
-            <SearchBar/>
-            <DatePicker selected={this.props.start_moment} onChange={(e) => this.props.updateStartDate(e)}/>
-            <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
-            <h1>this is a test</h1>
-            <LineGraph data1={data2} labels={dates}/>
+        <DatePicker selected={this.props.start_moment} onChange={(e) => this.props.updateStartDate(e)}/>
+        <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
 
+        <LeftCompartment>
+            <h2>Index Portfolio Stocks</h2>
             <LineGraph data1={data1} labels={dates}/>
         </ LeftCompartment>
         <RightCompartment>
-            <h2>Greetings, from Real Python!</h2>
+            <h2>Individual Stocks</h2>
+            <SearchBar/>
+            <LineGraph data1={data2} labels={dates}/>
         </ RightCompartment>
       </ wholeContainer>
     );

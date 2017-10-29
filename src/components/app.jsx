@@ -5,6 +5,8 @@ import { createStore } from 'redux';
 import Index from './index.jsx';
 import reducer from '../main/reducer';
 
+import styles from '../css/main.css';
+
 const store = createStore(reducer);
 window.store = store;
 

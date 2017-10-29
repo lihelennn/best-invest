@@ -7,9 +7,10 @@ function chartData(labels_param, data1_param) {
     datasets: [
       {
         label: 'My First dataset',
+        fontColor: '#fff',
         fillColor: 'rgba(220,220,220,0.2)',
-        strokeColor: 'rgba(220,220,220,1)',
-        pointColor: 'rgba(220,220,220,1)',
+        strokeColor: 'rgba(46, 204, 113,1.0)',
+        pointColor: 'rgba(46, 204, 113,1.0)',
         pointStrokeColor: '#fff',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
@@ -21,8 +22,8 @@ function chartData(labels_param, data1_param) {
 
 const options = {
   scaleShowGridLines: true,
-  scaleGridLineColor: 'rgba(0,0,0,.05)',
-  scaleGridLineWidth: 1,
+  scaleGridLineColor: 'rgba(255,255,255,1)',
+  scaleGridLineWidth: 0.5,
   scaleShowHorizontalLines: true,
   scaleShowVerticalLines: true,
   bezierCurve: false,
@@ -30,17 +31,22 @@ const options = {
   pointDot: true,
   pointDotRadius: 4,
   pointDotStrokeWidth: 1,
-  pointHitDetectionRadius: 20,
+  pointHitDetectionRadius: 5,
   datasetStroke: true,
   datasetStrokeWidth: 2,
   datasetFill: true,
-  legendTemplate: '<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+  legend: {
+    display: true,
+    labels: {
+      fontColor: '#fff',
+
+    }
+  }
 }
 
 const styles = {
   graphContainer: {
-    border: '1px solid black',
-    padding: '0px'
+    padding: '10px'
   }
 }
 
@@ -68,7 +74,7 @@ class LineGraph extends React.Component {
       <div style={styles.graphContainer}>
         <LineChart data={this.state.data}
           options={options}
-          width="500" height="250"/>
+          width="500" height="300"/>
       </div>
     )
   }

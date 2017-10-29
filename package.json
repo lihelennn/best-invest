@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.24.1",
+    "bloomer": "^0.6.2",
+    "bulma": "^0.6.0",
     "chart.js": "^1.1.1",
     "immutable": "^3.8.2",
     "install": "^0.8.9",
