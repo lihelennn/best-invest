@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Line as LineChart} from 'react-chartjs';
 
-function chartData() {
+function chartData(labels_param, data1_param, data2_param) {
   return {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: labels_param,
     datasets: [
       {
         label: 'My First dataset',
@@ -13,7 +13,7 @@ function chartData() {
         pointStrokeColor: '#fff',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(220,220,220,1)',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: data1_param,
       },
       {
         label: 'My Second dataset',
@@ -23,7 +23,7 @@ function chartData() {
         pointStrokeColor: '#fff',
         pointHighlightFill: '#fff',
         pointHighlightStroke: 'rgba(151,187,205,1)',
-        data: [28, 48, 40, 19, 86, 27, 90],
+        data: data2_param,
       },
     ]
   }
@@ -58,8 +58,9 @@ class LineGraph extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log(this.props);
     this.state = {
-      data: chartData()
+      data: chartData(this.props.labels, this.props.data1, this.props.data2)
     }
   }
 
@@ -73,5 +74,11 @@ class LineGraph extends React.Component {
     )
   }
 }
+
+LineGraph.propTypes = {
+  data1: PropTypes.array,
+  data2: PropTypes.array,
+  labels: PropTypes.array,
+};
 
 export default LineGraph;
