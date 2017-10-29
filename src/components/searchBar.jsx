@@ -1,28 +1,25 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { updateSymbol, updateStartDate, updateEndDate } from '../main/actions';
-
+import { addSymbol } from '../main/actions';
 
 export const SearchInput = styled.input`
   width: 100px,
 `;
 
-
 export class SearchBar extends React.PureComponent {
+  updateSymbol(symbol){
+    this.symbol = symbol;
+  };
+
   render() {
-      const that = this;
-      if (this.props.type == 'symbol'){
-        console.log(this.props.updateSymbol());
-        return (<SearchInput onChange={function(e){that.props.updateSymbol(e.currentTarget.value)}}></SearchInput>);
-      }
-      if (this.props.type == 'start_date'){
-        return (<SearchInput onChange={function(e){that.props.updateStartDate(e.currentTarget.value)}}></SearchInput>);
-      }
-      else{
-        return (<SearchInput onChange={function(e){that.props.updateEndDate(e.currentTarget.value)}}></SearchInput>);
-      }
-    }
+    console.log(this.props)
+    return(
+      <div>
+        <SearchInput onChange={(e) => this.updateSymbol(e.currentTarget.value)}></SearchInput>
+        <button onClick={() => {this.props.addSymbol(this.symbol)}}>Add</button>
+      </div>
+    )}
 }
 
 SearchBar.propTypes = {
@@ -35,10 +32,7 @@ SearchBar.propTypes = {
 export function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    updateSymbol: (symbol) => dispatch(updateSymbol(symbol)),
-    updateStartDate: (start_date) => dispatch(updateStartDate(start_date)),
-    updateEndDate: (end_date) => dispatch(updateEndDate(end_date)),
-
+    addSymbol: (symbol) => dispatch(addSymbol(symbol)),
   };
 }
 

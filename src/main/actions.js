@@ -1,9 +1,16 @@
 import {
+  ADD_SYMBOL,
   UPDATE_SYMBOL,
   UPDATE_START_DATE,
   UPDATE_END_DATE,
 } from './constants';
 
+export function addSymbol(symbol){
+  return {
+    type: ADD_SYMBOL,
+    symbol,
+  };
+}
 
 export function updateSymbol(symbol) {
   return {

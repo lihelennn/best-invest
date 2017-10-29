@@ -20,11 +20,7 @@ export class Index extends React.PureComponent {
       data1.push(getOpen(dates[i], sym));
     }
     return (<div>
-            <SearchBar type='symbol'/>
-            <SearchBar type='start_date'/>
-            <SearchBar type='end_date'/>
-            <SearchButton/>
-            {'hello'}
+            <SearchBar/>
             {this.props.symbol}
 
             <LineGraph data1={data1} labels={dates}/>
@@ -35,12 +31,10 @@ export class Index extends React.PureComponent {
 }
 
 Index.propTypes = {
-  symbol: PropTypes.string,
-  st: PropTypes.object,
+  symbol: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  st: state,
   symbol: state.get('symbol'),
 });
 
