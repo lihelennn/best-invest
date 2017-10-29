@@ -16,14 +16,17 @@
     "chart.js": "^1.1.1",
     "immutable": "^3.8.2",
     "install": "^0.8.9",
+    "moment": "^2.19.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.2",
     "react-chartjs": "^0.8.0",
     "react-chartjs-2": "^2.6.4",
+    "react-datepicker": "^0.57.0",
     "react-dom": "^15.6.2",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
     "reselect": "^3.0.1",
+    "save": "^2.3.1",
     "styled-components": "^2.2.2"
   },
   "devDependencies": {

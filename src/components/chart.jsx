@@ -40,7 +40,7 @@ const options = {
 const styles = {
   graphContainer: {
     border: '1px solid black',
-    padding: '15px'
+    padding: '0px'
   }
 }
 
@@ -68,7 +68,7 @@ class LineGraph extends React.Component {
       <div style={styles.graphContainer}>
         <LineChart data={this.state.data}
           options={options}
-          width="600" height="250"/>
+          width="500" height="250"/>
       </div>
     )
   }
