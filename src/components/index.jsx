@@ -47,12 +47,13 @@ export class Index extends React.PureComponent {
     let start_date = "2017-10-01";
     let end_date = "2017-10-22";
     const dates = this.getInBetweenDatesArray(start_date, end_date);
+    let api_data = getInfo(sym);
     // start_date = start_moment.substring(0,start_moment.indexOf('T'));
     // end_date = end_moment.substring(0,start_moment.indexOf('T'));
     // const dates = start_date !== undefined && end_date !== undefined ? [start_date, end_date] : ["2017-08-16", "2017-09-22", "2017-10-16"];
     console.log(dates);
     let symbol_inputs = this.props.symbol._tail != undefined ? this.props.symbol._tail.array : this.props.symbol;
-    const data1 = dates.map((date) => getOpen(date, sym));
+    const data1 = dates.map((date) => getOpen(date, sym, api_data));
     let data2 = [];
     let i = 0;
     let ii = 0;
@@ -60,7 +61,8 @@ export class Index extends React.PureComponent {
     for(i=0; i<dates.length; i++){
       current_stock = 0;
       for(ii=0; ii<symbol_inputs.length; ii++){
-        current_stock += parseInt(getOpen(dates[i], symbol_inputs[ii]));
+        api_data = getInfo(symbol_inputs[ii]);
+        current_stock += parseInt(getOpen(dates[i], symbol_inputs[ii], api_data));
       }
       data2.push(current_stock);
     }
