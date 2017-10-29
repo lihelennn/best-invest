@@ -66,6 +66,8 @@ export class Index extends React.PureComponent {
     let current_stock_list = [];
     var symbol = this.props.symbol
 
+    let total_individual_stocks = 0;
+
     for(i=0; i<dates.length; i++){
       current_stock = 0;
       symbol.map(
@@ -79,7 +81,20 @@ export class Index extends React.PureComponent {
       })
       data2.push(current_stock);
       current_stock_list.push(current_stock);
+
+
+      total_individual_stocks += current_stock;
+
     }
+
+    const total_shares = data2[0]/data1[0];
+    // let total_index_stocks = 0;
+    const new_data1 = data1.map((num) => num*total_shares);
+
+    const new_data1_delta = ((new_data1[new_data1.length-1] - new_data1[0])/(new_data1[0])*100).toFixed(4);
+    const data2_delta = ((data2[data2.length-1] - data2[0])/(data2[0])*100).toFixed(4);
+
+    // const percentage = total_index_stocks/total_individual_stocks;
 
     var listItems = []
     symbol.map(
@@ -97,10 +112,12 @@ export class Index extends React.PureComponent {
         <h1>this is a test</h1>
         <LeftCompartment>
           <h2>Index Portfolio Stocks</h2>
-            <LineGraph data1={data1} labels={dates}/>
+          <h4>{new_data1_delta}%</h4>
+            <LineGraph data1={new_data1} labels={dates}/>
         </ LeftCompartment>
         <RightCompartment>
           <h2>Individual Stocks</h2>
+          <h4>{data2_delta}%</h4>
           <LineGraph data1={data2} labels={dates}/>
           {listItems}
         </ RightCompartment>
