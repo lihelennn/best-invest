@@ -8,9 +8,7 @@ import { connect } from 'react-redux';
 import Toolbar from './toolbar.jsx'
 import LineGraph from './chart.jsx'
 import SearchBar from './searchBar.jsx'
-
-import {Container, Button} from 'bloomer';
-
+import IndividualStock from './individualStock.jsx'
 import 'react-datepicker/dist/react-datepicker.css';
 import { updateStartDate, updateEndDate } from '../main/actions'
 import {getInfo, getOpen, getClose} from '../../static/api';
@@ -33,7 +31,6 @@ export const RightCompartment = styled.div`
   text-align: center;
 `;
 
-
 export class Index extends React.PureComponent {
   getInBetweenDatesArray(start, end) {
     let arr = []
@@ -55,42 +52,56 @@ export class Index extends React.PureComponent {
     const start_moment = this.props.start_moment.format();
     const end_moment = this.props.end_moment.format();
     let start_date = "2017-10-01";
-    let end_date = "2017-10-22";
+    let end_date = "2017-10-03";
     const dates = this.getInBetweenDatesArray(start_date, end_date);
     let api_data = getInfo(sym);
     // start_date = start_moment.substring(0,start_moment.indexOf('T'));
     // end_date = end_moment.substring(0,start_moment.indexOf('T'));
     // const dates = start_date !== undefined && end_date !== undefined ? [start_date, end_date] : ["2017-08-16", "2017-09-22", "2017-10-16"];
     console.log(dates);
-    let symbol_inputs = this.props.symbol._tail != undefined ? this.props.symbol._tail.array : this.props.symbol;
-    const data1 = dates.map((date) => getOpen(date, sym, api_data));
+    // let symbol_inputs = this.props.symbol._tail != undefined ? this.props.symbol._tail.array : this.props.symbol;
+
+    var symbol = this.props.symbol
+    const data1 = dates.map((date) => getOpen(date, sym));
     let data2 = [];
     let i = 0;
     let ii = 0;
     let current_stock = 0;
+
     for(i=0; i<dates.length; i++){
       current_stock = 0;
-      for(ii=0; ii<symbol_inputs.length; ii++){
-        api_data = getInfo(symbol_inputs[ii]);
-        current_stock += parseInt(getOpen(dates[i], symbol_inputs[ii], api_data));
-      }
+      symbol.map(
+      (value, key) => {
+        current_stock += value * parseInt(getOpen(dates[i], key));
+        }
+      )
       data2.push(current_stock);
     }
-    return (
-      <wholeContainer>
-        <DatePicker selected={this.props.start_moment} onChange={(e) => this.props.updateStartDate(e)}/>
-        <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
 
+    var listItems = []
+    symbol.map(
+      (value, key) => {
+        listItems.push(<IndividualStock key={key} symbol={key}/>)
+      }
+    )
+    return (
+      <WholeContainer>
+        <SearchBar/>
+        Start date:
+        <DatePicker selected={this.props.start_moment} onChange={(e) => this.props.updateStartDate(e)}/>
+        End date:
+        <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
+        <h1>this is a test</h1>
         <LeftCompartment>
-            <h2>Index Portfolio Stocks</h2>
+          <h2>Index Portfolio Stocks</h2>
             <LineGraph data1={data1} labels={dates}/>
         </ LeftCompartment>
         <RightCompartment>
-            <h2>Individual Stocks</h2>
-            <SearchBar/>
-            <LineGraph data1={data2} labels={dates}/>
+          <h2>Individual Stocks</h2>
+          <LineGraph data1={data2} labels={dates}/>
+          {listItems}
         </ RightCompartment>
-      </ wholeContainer>
+      </ WholeContainer>
     );
   }
 }
