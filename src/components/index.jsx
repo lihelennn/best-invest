@@ -92,7 +92,9 @@ export class Index extends React.PureComponent {
     const new_data1 = data1.map((num) => num*total_shares);
 
     const new_data1_delta = ((new_data1[new_data1.length-1] - new_data1[0])/(new_data1[0])*100).toFixed(4);
+    const net1 = (new_data1[new_data1.length-1] - new_data1[0]).toFixed(2);
     const data2_delta = ((data2[data2.length-1] - data2[0])/(data2[0])*100).toFixed(4);
+    const net2 = (data2[data2.length-1] - data2[0]).toFixed(2);
 
     // const percentage = total_index_stocks/total_individual_stocks;
 
@@ -111,12 +113,14 @@ export class Index extends React.PureComponent {
         <DatePicker selected={this.props.end_moment} onChange={(e) => this.props.updateEndDate(e)}/>
         <LeftCompartment>
           <h2>Index Portfolio Stocks</h2>
-          <h4>{new_data1_delta}%</h4>
+          <h4>Net Gains: ${net1}</h4>
+          <h4>Percentage Gains: {new_data1_delta}%</h4>
             <LineGraph data1={new_data1} labels={dates}/>
         </ LeftCompartment>
         <RightCompartment>
           <h2>Individual Stocks</h2>
-          <h4>{data2_delta}%</h4>
+          <h4>Net Gains: ${net2}</h4>
+          <h4>Percentage Gains: {data2_delta}%</h4>
           <LineGraph data1={data2} labels={dates}/>
           {listItems}
         </ RightCompartment>
