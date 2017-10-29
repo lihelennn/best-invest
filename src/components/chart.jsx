@@ -48,11 +48,20 @@ class LineGraph extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log(this.props);
     this.state = {
+      labels: this.props.labels,
+      data1: this.props.data1,
       data: chartData(this.props.labels, this.props.data1)
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.labels !== nextProps.labels || this.state.data1 !== nextProps.data1) {
+      this.setState({
+        data: chartData(nextProps.labels, nextProps.data1)
+      });
+    }
+}
 
   render() {
     return (

@@ -13,7 +13,6 @@ export class SearchBar extends React.PureComponent {
   };
 
   render() {
-    console.log(this.props)
     return(
       <div>
         <SearchInput onChange={(e) => this.updateSymbol(e.currentTarget.value)}></SearchInput>
