@@ -1,4 +1,5 @@
 import {
+  BUY_SHARE,
   ADD_SYMBOL,
   UPDATE_SYMBOL,
   UPDATE_START_DATE,
@@ -30,5 +31,12 @@ export function updateEndDate(end_date){
   return {
     type: UPDATE_END_DATE,
     end_date,
+  }
+}
+
+export function buyShare(symbol){
+  return {
+    type: BUY_SHARE,
+    symbol,
   }
 }

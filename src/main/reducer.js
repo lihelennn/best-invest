@@ -2,6 +2,7 @@ import { fromJS } from 'immutable';
 import moment from 'moment';
 
 import {
+  BUY_SHARE,
   ADD_SYMBOL,
   UPDATE_SYMBOL,
   UPDATE_START_DATE,
@@ -9,7 +10,7 @@ import {
 } from './constants';
 
 export const initialState = fromJS({
-  symbol: [],
+  symbol: {"GOOGL":1},
   start_moment: moment(),
   start_date: "",
   end_moment: moment(),
@@ -19,11 +20,12 @@ export const initialState = fromJS({
 function mainReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_SYMBOL:
-      var copy = state.get('symbol').concat([action.symbol])
-      return state.set('symbol', copy);
+      return state.setIn(["symbol", action.symbol], 1);
     case UPDATE_SYMBOL:
       return state.set('symbol', action.symbol);
-
+    case BUY_SHARE:
+      var numShares = state.getIn(["symbol", action.symbol])
+      return state.setIn(["symbol", action.symbol], numShares + 1);
     case UPDATE_START_DATE:
       var formatted = action.start_date.format().slice(0,10);
       state = state.set('start_moment', action.start_date);
