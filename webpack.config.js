@@ -30,16 +30,20 @@ const config = {
       // css
       {
         test: /\.css$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: { loader: 'style-loader' },
-          use: {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
-        }),
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+        // use: ExtractTextPlugin.extract({
+        //   fallback: { loader: 'style-loader' },
+          
+        //   use: {
+        //     loader: 'css-loader',
+        //     options: {
+        //       modules: true,
+        //     },
+        //   },
+        // }),
       },
       // fileloader
       {
@@ -65,7 +69,7 @@ const config = {
       exclude: /^vendor.*.\.js$/,
       filename: '[file].map',
     }),
-    new ExtractTextPlugin('css/[name].css'),
+    // new ExtractTextPlugin('css/[name].css'),
   ],
   watchOptions:
     {
