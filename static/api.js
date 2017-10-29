@@ -32,7 +32,7 @@ export function getOpen(date, symbol, api_data){
       }
 
       var month = parseInt(yy.getMonth())+1;
-      // console.log(month);
+
       var month_string = month.toString();
       if(month < 10) {
         month_string = "0" + month.toString();
@@ -46,11 +46,6 @@ export function getOpen(date, symbol, api_data){
 
       var new_date = year_string+"-"+month_string+"-"+day_string;
       pre = api_data[new_date];
-      if(pre === undefined){
-        console.log(new_date);
-      }else{
-        console.log(pre);
-      }
       if(pre !== undefined) {
         ans = pre["1. open"];
       }
@@ -59,7 +54,6 @@ export function getOpen(date, symbol, api_data){
     if (ans !== undefined){
       return ans;
     }
-    console.log(0);
     return "0";
 }
 
