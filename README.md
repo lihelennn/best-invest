@@ -16,6 +16,6 @@ $ git clone https://github.com/lihelennn/best-invest.git
 ```
 In the terminal, go into the best-invest folder and run:
 ```
-$ python app.py
+$ python wsgi.py
 ```
 You can then view the webpage by opening the URL `localhost:8000` in a web browser.
