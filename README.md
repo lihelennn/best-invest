@@ -9,7 +9,7 @@ Created at BostonHacks 2017 by Amanda Chiu, Boying Tang, and Helen Li.
 - React/Redux
 - HTML/CSS
 
-#### Running the Program
+## Running the Program
 Clone the repo by running:
 ```
 $ git clone https://github.com/lihelennn/best-invest.git
